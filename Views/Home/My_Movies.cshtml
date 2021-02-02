@@ -1,0 +1,46 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "My Movies";
+
+}
+@model IEnumerable<IS413_Movie_Web_App_ZS.Models.Add_Movie_Data>;
+
+
+<div class="text-center">
+    <h1>My Movie Collection</h1>
+</div>
+<div class="text-center">
+    <table class="center">
+        <thead>
+            <tr>
+                <th>Movie Title</th>
+                <th>Category</th>
+                <th>Year</th>
+                <th>Director</th>
+                <th>Rating</th>
+                <th>Edited</th>
+                <th>Lent To</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (IS413_Movie_Web_App_ZS.Models.Add_Movie_Data x in Model)
+            {
+                <tr>
+                    <td>@x.Movie_Title</td>
+                    <td>@x.Category</td>
+                    <td>@x.Year</td>
+                    <td>@x.Director</td>
+                    <td>@x.Rating</td>
+                    <td>@x.Edited</td>
+                    <td>@x.Lent_To</td>
+                    <td>@x.Notes</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
