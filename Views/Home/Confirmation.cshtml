@@ -6,6 +6,7 @@
     
 }
 <div class="text-center">
+    <!--Logic to process whether the entered movie is independence day or not-->
     @if (Model.Movie_Title.ToUpper() == "INDEPENDENCE DAY")
     {
         <h2>Sorry, the movie @Model.Movie_Title is not allowed.</h2>
@@ -18,6 +19,7 @@
     }
 </div>
 
+<!--Link to the Movie Collection Page-->
 <div>
     Click <a asp-action="My_Movies">Movie Collection</a>
 </div>

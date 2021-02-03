@@ -16,6 +16,7 @@ namespace IS413_Movie_Web_App_ZS.Models
         public String Director { get; set; }
         [Required]
         public String Rating { get; set; }
+        /* 1888 was chosen as the starting year since research showed that the first piece of film that could be viewed was done in 1888*/
         [Required, Range(1888,2021)]
         public String Year { get; set; }
         public bool Edited { get; set; }

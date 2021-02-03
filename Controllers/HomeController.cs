@@ -18,25 +18,30 @@ namespace IS413_Movie_Web_App_ZS.Controllers
             _logger = logger;
         }
 
+        /* Home Page*/
         public IActionResult Index()
         {
             return View();
         }
 
+        /* Movie Collection Page*/
         public IActionResult My_Movies()
         {
             return View(Movie_Collection.Applications);
         }
 
+        /* Movie Form Page*/
         [HttpGet]
         public IActionResult Add_Movie()
         {
             return View();
         }
 
+        /* Movie Form Submission*/
         [HttpPost]
         public IActionResult Add_Movie(Add_Movie_Data new_Movie)
         {
+            /* Logic to make sure that the movie Independence Day is never properly processed*/
             if (ModelState.IsValid == true)
             { 
                 if (new_Movie.Movie_Title.ToUpper() != "INDEPENDENCE DAY")
