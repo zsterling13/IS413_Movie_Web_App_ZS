@@ -24,10 +24,11 @@ namespace IS413_Movie_Web_App_ZS.Controllers
             return View();
         }
 
-        /* Movie Collection Page*/
+        /* Movie Collection Page that also filters out any movie named independence day*/
         public IActionResult My_Movies()
         {
-            return View(Movie_Collection.Applications);
+            return View(Movie_Collection.Applications.Where(r => r.Movie_Title.ToUpper() != "INDEPENDENCE DAY"));
+            
         }
 
         /* Movie Form Page*/
@@ -51,6 +52,7 @@ namespace IS413_Movie_Web_App_ZS.Controllers
                 }
                 else
                 {
+                    
                     return View("Confirmation", new_Movie);
                 }
             }
