@@ -13,7 +13,7 @@ namespace IS413_Movie_Web_App_ZS.Models
         {
 
         }
-        //DbSet of Book objects
+        //DbSet or Table of Movie objects
         public DbSet<Add_Movie_Data> Movies { get; set; }
     }
 }

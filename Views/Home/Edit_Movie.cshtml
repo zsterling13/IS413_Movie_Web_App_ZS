@@ -10,8 +10,12 @@
 <div>
     <h1>Edit a Movie</h1>
     <br />
-    <p>Enter in the information you would like to add for a new movie below.</p>
+    <p>Enter in the information you would like to change for the movie you have requested to edit.</p>
     <br />
+
+    <!--Form for the user to modify information for the movie requested to be edited. Will be submitted through the Edit_Movie action in the
+        Home Controller. All input fields should have pre-set data in it for the record that was requested to be edited.
+        -->
     <form asp-controller="Home" asp-action="Edit_Movie" method="post">
         <input type="hidden" asp-for="MovieID" value="@Model.MovieID" />
         <div>
@@ -58,7 +62,7 @@
             <input type="text" asp-for="Notes" value="@Model.Notes" />
         </div>
 
-        <button type="submit">Add the Movie</button>
+        <button type="submit">Edit the Movie</button>
     </form>
 
     <!--Show any errors here-->

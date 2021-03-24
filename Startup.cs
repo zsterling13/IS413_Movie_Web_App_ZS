@@ -27,12 +27,11 @@ namespace IS413_Movie_Web_App_ZS
         {
             services.AddControllersWithViews();
 
+            //Startup a session with the database through the MovieDBContext class
             services.AddDbContext<MovieDBContext>(options =>
             {
-                //string path = Directory.GetCurrentDirectory();
 
-                //Outputs database to the project's path location by replacing [DirectoryHere] in the appsettings.json with the project's path location
-                //options.UseSqlServer(Configuration["ConnectionStrings:BookInfoConnection"].Replace("[DirectoryHere]",path));
+                //Outputs database a sqlite database connected to the MovieInfoConnection aspect of the appsettings' ConnectionStrings
                 options.UseSqlite(Configuration["ConnectionStrings:MovieInfoConnection"]);
 
             });

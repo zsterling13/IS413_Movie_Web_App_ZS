@@ -6,7 +6,7 @@ Class: IS 413, Section 3, Group 4
 Description: This website allows Joel Hilton to store his temporary movie collection information. Also, if he wants to look at podcasts he can go
     to a seperate podcast website by clicking in the navigation bar. On the Add Movie page the user can enter in information for every new movie
     item, and on the Movie Collection page the user can view the temporary list of all movies entered during the session. The movie "Independence Day"
-    is not allowed to be displayed however.
+    is not allowed to be displayed however. Also includes the functionality to edit or delete movie records in the database.
 -->
 <html lang="en">
 <head>
@@ -26,6 +26,8 @@ Description: This website allows Joel Hilton to store his temporary movie collec
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!--Navigation links for various pages on the website-->
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
@@ -45,6 +47,8 @@ Description: This website allows Joel Hilton to store his temporary movie collec
             </div>
         </nav>
     </header>
+
+    <!--Rendered views are added to the layout where RenderBody is-->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

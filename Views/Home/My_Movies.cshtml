@@ -27,7 +27,9 @@
         </thead>
 
         <tbody>
-
+            <!--Loop that goes through and creates dynamic HTML for every movie record in the sqlite database. Info for each record is
+                processed through the partial view named MovieSummary.
+                -->
             @foreach (var x in Model)
             {
                 <partial name="MovieSummary" model="x" />

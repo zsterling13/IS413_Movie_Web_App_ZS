@@ -5,7 +5,9 @@
 }
 @model Add_Movie_Data
 
+<!--Table rows for each movie record-->
 <tr>
+    <!--Dynamically add the movie record's data into the page's HTML-->
     <td>@Model.Movie_Title</td>
     <td>@Model.Category</td>
     <td>@Model.Year</td>
@@ -15,6 +17,7 @@
     <td>@Model.Lent_To</td>
     <td>@Model.Notes</td>
     <td>
+        <!--Button that allows the user to edit the movie record that has been requested-->
         <form method="post">
             <input type="hidden" asp-for="MovieID" value="@Model.MovieID" />
             <input type="hidden" asp-for="Movie_Title" value="@Model.Movie_Title" />
@@ -28,6 +31,7 @@
             <button type="submit">Edit</button>
         </form>
 
+        <!--Button that allows the user to remove the movie record that has been requested-->
         <form method="post" asp-action="Remove_Movie">
             <input type="hidden" asp-for="MovieID" value="@Model.MovieID" />
             <input type="hidden" asp-for="Movie_Title" value="@Model.Movie_Title" />
