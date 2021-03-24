@@ -12,7 +12,7 @@
     <h1>My Movie Collection</h1>
 </div>
 <div class="text-center">
-    <table class="center">
+    <table class="center table table-bordered table-hover table-light">
         <thead>
             <tr>
                 <th>Movie Title</th>
@@ -27,21 +27,12 @@
         </thead>
 
         <tbody>
-            <!--Loops through all of the submitted movies to print them out here-->
-            @foreach (IS413_Movie_Web_App_ZS.Models.Add_Movie_Data x in Model)
-            {
-                <tr>
-                    <td>@x.Movie_Title</td>
-                    <td>@x.Category</td>
-                    <td>@x.Year</td>
-                    <td>@x.Director</td>
-                    <td>@x.Rating</td>
-                    <td>@x.Edited</td>
-                    <td>@x.Lent_To</td>
-                    <td>@x.Notes</td>
 
-                </tr>
+            @foreach (var x in Model)
+            {
+                <partial name="MovieSummary" model="x" />
             }
+
         </tbody>
     </table>
 </div>

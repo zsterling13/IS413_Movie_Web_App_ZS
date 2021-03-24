@@ -13,9 +13,12 @@ namespace IS413_Movie_Web_App_ZS.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private MovieDBContext _context { get; set; }
+
+        public HomeController(ILogger<HomeController> logger, MovieDBContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         /* Home Page*/
@@ -24,11 +27,17 @@ namespace IS413_Movie_Web_App_ZS.Controllers
             return View();
         }
 
+        /* Link to Podcasts Page*/
+        public IActionResult My_Podcasts()
+        {
+            return View();
+        }
+
         /* Movie Collection Page that also filters out any movie named independence day*/
         public IActionResult My_Movies()
         {
-            return View(Movie_Collection.Applications.Where(r => r.Movie_Title.ToUpper() != "INDEPENDENCE DAY"));
-            
+            IQueryable<Add_Movie_Data> Movie_DB = _context.Movies.Where(r => r.Movie_Title.ToUpper() != "INDEPENDENCE DAY");
+            return View(Movie_DB);
         }
 
         /* Movie Form Page*/
@@ -47,12 +56,13 @@ namespace IS413_Movie_Web_App_ZS.Controllers
             { 
                 if (new_Movie.Movie_Title.ToUpper() != "INDEPENDENCE DAY")
                 {
-                    Movie_Collection.AddApplication(new_Movie);
+                    _context.Movies.Add(new_Movie);
+                    _context.SaveChanges();
+                    //Movie_Collection.AddApplication(new_Movie);
                     return View("Confirmation", new_Movie);
                 }
                 else
                 {
-                    
                     return View("Confirmation", new_Movie);
                 }
             }
@@ -62,6 +72,48 @@ namespace IS413_Movie_Web_App_ZS.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult Edit_Movie(Add_Movie_Data movie_to_edit)
+        {
+            IQueryable<Add_Movie_Data> wumbo = _context.Movies.Where(p => p.MovieID == movie_to_edit.MovieID);
+
+            foreach (var x in wumbo)
+            {
+                x.Movie_Title = movie_to_edit.Movie_Title;
+                x.Category = movie_to_edit.Category;
+                x.Director = movie_to_edit.Director;
+                x.Rating = movie_to_edit.Rating;
+                x.Year = movie_to_edit.Year;
+                x.Lent_To = movie_to_edit.Lent_To;
+                x.Edited = movie_to_edit.Edited;
+                x.Notes = movie_to_edit.Notes;
+            }
+
+            _context.SaveChanges();
+
+            return View("Edit_Confirmation", movie_to_edit);
+        }
+
+        [HttpPost]
+        public IActionResult My_Movies(Add_Movie_Data movie_to_edit)
+        {
+            return View("Edit_Movie", movie_to_edit);
+        }
+
+        [HttpPost]
+        public IActionResult Remove_Movie(Add_Movie_Data movie_to_remove)
+        {
+            IQueryable<Add_Movie_Data> wumbo = _context.Movies.Where(p => p.MovieID == movie_to_remove.MovieID);
+
+            foreach (var x in wumbo)
+            {
+                _context.Movies.Remove(x);
+            }
+
+            _context.SaveChanges();
+
+            return View("Edit_Confirmation", movie_to_remove);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
